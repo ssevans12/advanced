@@ -15,17 +15,17 @@
         <ul id="title-list"></ul>
     </div>
     <script>
+
+
 console.log("message 1");
 const authorList = document.getElementById("author-list");
 const titleList = document.getElementById("title-list");
 const titleContainer = document.getElementById("title-container")
+
 fetch('https://poetrydb.org/author')
             .then(response => response.json())
             .then(data => {
                 console.log(data.authors);
-
-                
-                
 
                 for (let author of data.authors){
                     const authorEl = document.createElement("li")
@@ -33,19 +33,25 @@ fetch('https://poetrydb.org/author')
                     authorList.append(authorEl);
                 }
 
-                authorList.addEventListener("click",(event) => {
+                
+            }) 
+
+            authorList.addEventListener("click",(event) => {
                     let clickedAuthor = event.target.innerText;
-                console.log(event.target)
+                console.log("targeted author", event.target.innerText);
                 fetch(`https://poetrydb.org/author/${clickedAuthor}/title`)
                 .then((response) => response.json())
-                .then((data) =>
-                 console.log("fetched data", data));
-                
-            })
-
-            }) 
-            
-          
+                .then(data => {
+                console.log("fetched data", data);
+                for (let titleObj of data) {
+                    console.log(titleObj);
+                    const titleEl = document.createElement("li");
+                    titleEl.innerText = titleObj.title;
+                 titleList.append(titleEl);
+                }
+            });
+         });
+       
     </script>
 </body>
 </html>
