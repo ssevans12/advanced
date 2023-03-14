@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="author-list"></ul>
+
+
+    </ul>
+    <div id="title-container">
+        <ul id="title-list"></ul>
+    </div>
+    <script>
+console.log("message 1");
+const authorList = document.getElementById("author-list");
+const titleList = document.getElementById("title-list");
+const titleContainer = document.getElementById("title-container")
+fetch('https://poetrydb.org/author')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.authors);
+
+                
+                
+
+                for (let author of data.authors){
+                    const authorEl = document.createElement("li")
+                    authorEl.innerText = author;
+                    authorList.append(authorEl);
+                }
+
+                authorList.addEventListener("click",(event) => {
+                    let clickedAuthor = event.target.innerText;
+                console.log(event.target)
+                fetch(`https://poetrydb.org/author/${clickedAuthor}/title`)
+                .then((response) => response.json())
+                .then((data) =>
+                 console.log("fetched data", data));
+                
+            })
+
+            }) 
+            
+          
+    </script>
+</body>
+</html>
