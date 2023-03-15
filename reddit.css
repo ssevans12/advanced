@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#posts-container{
+    margin: 20px;
+
+}
+
+#posts-container > div{
+    border: 1px solid black;
+    margin-bottom: 20px;
+}
