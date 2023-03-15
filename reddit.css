@@ -3,12 +3,22 @@
     padding: 0;
 }
 
-#posts-container{
+#posts-container, #search-container{
     margin: 20px;
-
+    width: 50vw;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #posts-container > div{
     border: 1px solid black;
+    border-radius: 5px;
+    background-color: lightblue;
     margin-bottom: 20px;
+    padding: 10px;
+}
+
+img, a {
+    display: block;
+    margin-top: 10px;
 }
