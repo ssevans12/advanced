@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Books</title>
+    <style>
+        body {
+            background-image: url("https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fExvdmV8ZW58MHx8MHx8&auto=format&fit=crop&w=400&q=60");
+            background-size: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+            margin-bottom: 20px;
+        }
+        div {
+            font-style: italic;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>List of Love Books...</header>
+    <div id="container"></div>
+    <script>
+        const container = document.getElementById('container')
+        fetch('http://openlibrary.org/subjects/love.json?published_in=1500-1600')
+            .then((response) => response.json())
+            .then(data => {
+                // console.log(data.works);
+                for (let book of data.works) {
+                    console.log(book.title);
+                    const div = document.createElement('div')
+                    div.innerText = book.title;
+                    container.append(div)
+                }
+            })
+    </script>
+</body>
+</html>
